@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <router-link class="nav-link" to="/">Wip Query</router-link> 
-        <router-link class="nav-link" to="/union-all">Union all</router-link>
+        <router-link class="nav-link" to="/union-all">Union All</router-link>
       </div>
     </div>
   </nav>
