@@ -20,8 +20,9 @@
       </div>
     </div>
     <div class="p-1">
-      <button class="btn btn-success m-1" @:click="clearButton">Query <i class="bi bi-database-fill-check"></i></button>
-      <button class="btn btn-danger">Clear <i class="bi bi-x-circle-fill"></i></button>
+      <button class="btn btn-primary m-1">Query <i class="bi bi-database-fill-check"></i></button>
+      <button class="btn btn-success m-1">Export Excel <i class="bi bi-file-earmark-spreadsheet-fill"></i></button>
+      <button class="btn btn-danger" @:click="clearButton">Clear <i class="bi bi-x-circle-fill"></i></button>
     </div>
   </form>
   <div class="p-2 label_select">RESULT:</div>
@@ -132,8 +133,7 @@ export default {
     new MultiSelectTag('work_order')
   },
   methods: {
-    clearButton(event) {
-      event.preventDefault();
+    clearButton() {
       document.getElementById("work_order").value = "";
       document.getElementById("group_name").value = "";
     },
