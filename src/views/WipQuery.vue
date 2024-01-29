@@ -20,9 +20,9 @@
       </div>
     </div>
     <div class="p-1">
-      <button class="btn btn-primary m-1">Query <i class="bi bi-database-fill-check"></i></button>
+      <button type="submit" class="btn btn-primary m-1" @click="callApi">Query <i class="bi bi-database-fill-check"></i></button>
       <button class="btn btn-success">Export Excel <i class="bi bi-file-earmark-spreadsheet-fill"></i></button>
-      <button class="btn btn-danger m-1" @:click="clearButton">Clear <i class="bi bi-x-circle-fill"></i></button>
+      <button class="btn btn-danger m-1" @click="clearButton">Clear <i class="bi bi-x-circle-fill"></i></button>
     </div>
   </form>
   <div class="p-2 label_select">RESULT:</div>
@@ -112,42 +112,36 @@ export default {
         { name: 'Eight', value: 'H' },
         { name: 'Nine', value: 'I' },
         { name: 'Ten', value: 'J' },
-        { name: 'Eleven', value: 'K' },
-        { name: 'Twelve', value: 'L' },
-        { name: 'Thirteen', value: 'M' },
-        { name: 'Fourteen', value: 'N' },
-        { name: 'Fifteen', value: 'O' },
-        { name: 'Sixteen', value: 'P' },
-        { name: 'Seventeen', value: 'Q' },
-        { name: 'Eighteen', value: 'R' },
-        { name: 'Nineteen', value: 'S' },
-        { name: 'Twenty', value: 'T' },
-        { name: 'Twenty-one', value: 'U' },
-        { name: 'Twenty-two', value: 'V' },
-        { name: 'Twenty-three', value: 'W' },
-        { name: 'Twenty-four', value: 'X' },
-        { name: 'Twenty-five', value: 'Y' },
-        { name: 'Twenty-six', value: 'Z' },
       ],
     };
   },
-  // setup() {
-  //   function fetchData(){
-
-  //   }
-  //   onMounted(() => {
-  //     fetchData();
-  //   });
-  //   return {
-  //     data,
-  //     loading,
-  //     error,
-  //   };
-  // },
   mounted() {
     new MultiSelectTag('work_order')
   },
   methods: {
+    callApi() {
+      // let workOrder = document.getElementById('work_order').value;
+      // console.log(workOrder);
+      // let groupName = document.getElementById('group_name').value;
+      // console.log(groupName);
+      const data = {
+        mo: '1002991-VYJ105',
+        group_name: 'AOI1-B'
+      };
+
+      fetch('http://10.52.201.58:8000/wip_status/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    },
     clearButton() {
       document.getElementById("work_order").value = "";
       document.getElementById("group_name").value = "";

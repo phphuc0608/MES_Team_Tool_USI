@@ -6,8 +6,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <router-link class="nav-link" to="/">Wip Query</router-link> 
-        <router-link class="nav-link" to="/union-all">Union All</router-link>
+        <router-link class="nav-link mx-1" to="/">Wip Query</router-link> 
+        <router-link class="nav-link mx-1" to="/union-all">Union All</router-link>
       </div>
     </div>
   </nav>
@@ -39,5 +39,9 @@ nav{
     background-color: #DDDDDD;
     border-radius: 10px;
  }
-
+.navbar-nav a.router-link-exact-active{
+  color: #122459!important;
+  background-color: #DDDDDD;
+  border-radius: 10px;
+}
 </style>
