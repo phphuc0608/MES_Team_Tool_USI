@@ -13,10 +13,9 @@
         <label for="group_name">
           <div class="label_select">Select group name</div>
         </label>
-        <select name="group_name" id="group_name" class="form-select p-2">
-          <option disabled selected value> -- select an option -- </option>
-          <option v-for="group_name in group_names" :value="group_name.value">{{ group_name.name }}</option>
-        </select>   
+        <select name="group_name" id="group_name" multiple>
+          <option v-for="group_name in group_names" :value="group_name.value">{{ group_name.name }}</option>      
+        </select>
       </div>
     </div>
     <div class="p-1">
@@ -52,9 +51,9 @@
             <span aria-hidden="true">&laquo;</span>
           </a>
         </li>
-        <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+        <li class="page-item" v-for="n in pageNumber" :key="n" :class="{ 'active': n === page }">
+          <a class="page-link" href="#" @click.prevent="goToPage(n)">{{ n }}</a>
+        </li>
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Next" @click.prevent="nextPage">
             <span aria-hidden="true">&raquo;</span>
@@ -100,10 +99,12 @@ export default {
       ],
       allResults: [],
       results: [],
+      pageNumber: 0,
     };
   },
   mounted() {
-    new MultiSelectTag('work_order')
+    new MultiSelectTag('work_order');
+    new MultiSelectTag('group_name');
   },
   methods: {
     callApi(event) {
@@ -124,7 +125,7 @@ export default {
         this.allResults = data;
         this.page = 1;
         this.updateResults();
-        console.log('Success:', data);
+        this.updatePageNumber();
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -158,10 +159,13 @@ export default {
       document.getElementById("work_order").value = "";
       document.getElementById("group_name").value = "";
     },
-    pageNumber(){
-      let pageNumber = Math.ceil(this.allResults.length / this.limit);
-      return pageNumber;
-    }
+    goToPage(n) {
+      this.page = n;
+      this.updateResults();
+    },
+    updatePageNumber() {
+      this.pageNumber = Math.ceil(this.allResults.length / this.limit);
+    },
   },
 }
 </script>
