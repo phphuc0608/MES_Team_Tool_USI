@@ -1,5 +1,5 @@
 <template>
-  <form method="">
+  <form method="post">
     <div id="select_container" class="d-flex justify-content-center align-items-center">
       <div class="col-md-6 mt-3 p-2">
         <label for="work_order">
@@ -71,31 +71,13 @@ export default {
   name: 'WipQuery',
   data() {
     return {
-      limit: 5,
+      limit: 10,
       page: 1,
       work_orders: [
       { name: '1002991-VYJ105', value: '1002991-VYJ105' },
-        { name: 'Two', value: 'B' },
-        { name: 'Three', value: 'C' },
-        { name: 'Four', value: 'D' },
-        { name: 'Five', value: 'E' },
-        { name: 'Six', value: 'F' },
-        { name: 'Seven', value: 'G' },
-        { name: 'Eight', value: 'H' },
-        { name: 'Nine', value: 'I' },
-        { name: 'Ten', value: 'J' },
       ],
       group_names: [
         { name: 'AOI1-B', value: 'AOI1-B' },
-        { name: 'Two', value: 'B' },
-        { name: 'Three', value: 'C' },
-        { name: 'Four', value: 'D' },
-        { name: 'Five', value: 'E' },
-        { name: 'Six', value: 'F' },
-        { name: 'Seven', value: 'G' },
-        { name: 'Eight', value: 'H' },
-        { name: 'Nine', value: 'I' },
-        { name: 'Ten', value: 'J' },
       ],
       allResults: [],
       results: [],
